@@ -18,10 +18,7 @@ public class ArticleController {
 	ArticleRepository articleRepository;
 	
 	@GetMapping("/index")
-	public String index(Model model) { //model is provided by spring
-		List<Article> articles = articleRepository.findAll();
-		model.addAttribute("listArticle",articles);
-			
+	public String index() { //model is provided by spring : 	public String index(Model model) 		List<Article> articles = articleRepository.findAll();		model.addAttribute("listArticle",articles);
 		return "articles"; //returns dispatcherServlet = vue, returns articles.html
 	}
 	
