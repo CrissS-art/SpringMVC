@@ -24,7 +24,6 @@ public class ArticleController {
 	public String index(Model model, @RequestParam(name="page", defaultValue = "0") int page,
 									 @RequestParam(name="keyword", defaultValue = "") String kw) { //model is provided by spring :
 
-//		Page<Article> articles = articleRepository.findAll(PageRequest.of(page, 5));
 		Page<Article> articles = articleRepository.findByDescriptionContains(kw,PageRequest.of(page, 5));
 		model.addAttribute("listArticle",articles.getContent());
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
@@ -33,5 +32,11 @@ public class ArticleController {
 
 		return "articles"; //returns dispatcherServlet = vue, returns articles.html;
 	}
-	
+
+	@GetMapping("/delete")
+	public String delete(Long id, int page, String keyword) {
+
+		articleRepository.deleteById(id);
+		return "redirect:/index?page="+page+"&keyword="+keyword;
+	}
 }
