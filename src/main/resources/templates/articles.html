@@ -11,6 +11,18 @@
 <body>
 
 	<div class = "container">
+
+		<div class="panel-heading">
+			<div class="panel-body">
+				<form th:action="@{/index}" method="get">
+					<label>keyword</label>
+					<input type="text" name="keyword" th:value="${keyword}">
+					<button type="submit" class="btn btn-primary"> Search </button>
+				</form>
+			</div>
+		</div>
+
+
 		<div class = "panel panel-primary">
 			<div class = "panel-heading">Liste des articles</div>
 				<div class = "panel-body">
@@ -24,6 +36,12 @@
 							<td th:text="${a.price}"> </td>
 						</tr>
 					</table>
+
+					<ul class="nav nav-pills">
+						<li th:class="${currentPage==status.index}?'active':''" th:each="page,status:${pages}">
+							<a th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}"></a>
+						</li>
+
 			</div>
 		</div>
 	</div>

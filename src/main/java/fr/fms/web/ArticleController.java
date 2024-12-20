@@ -21,13 +21,17 @@ public class ArticleController {
 	ArticleRepository articleRepository;
 	
 	@GetMapping("/index")
-	public String index(Model model, @RequestParam(name="page", defaultValue = "0") int page) { //model is provided by spring :
-		Page<Article> articles = articleRepository.findAll(PageRequest.of(page, 5));
+	public String index(Model model, @RequestParam(name="page", defaultValue = "0") int page,
+									 @RequestParam(name="keyword", defaultValue = "") String kw) { //model is provided by spring :
+
+//		Page<Article> articles = articleRepository.findAll(PageRequest.of(page, 5));
+		Page<Article> articles = articleRepository.findByDescriptionContains(kw,PageRequest.of(page, 5));
 		model.addAttribute("listArticle",articles.getContent());
-
+		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage", page);
+		model.addAttribute("keyword", kw);
 
-		return "articles"; //returns dispatcherServlet = vue, returns articles.html
+		return "articles"; //returns dispatcherServlet = vue, returns articles.html;
 	}
 	
 }

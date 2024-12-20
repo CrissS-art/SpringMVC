@@ -19,8 +19,8 @@ public class SpringShopWebApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		articleRepository.save(new Article(null,"Samsung S8",250));
-//		articleRepository.save(new Article(null,"Samsung S9",300));
+//		articleRepository.save(new Article(null,"Motorola G34",110));
+//		articleRepository.save(new Article(null,"Motorola G75",335));
 //		articleRepository.save(new Article(null,"Samsung S10",500));
 		
 //		articleRepository.findAll().forEach( a -> System.out.println(a));
