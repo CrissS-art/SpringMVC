@@ -13,11 +13,16 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @ToString
+@Data @NoArgsConstructor  @ToString
 public class Article implements Serializable {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String description;
 	private double price;
-	
+
+	public Article(Long id,String description,double price) {
+		this.id = id;
+		this.description = description;
+		this.price = price;
+	}
 }
